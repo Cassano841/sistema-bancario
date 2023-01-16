@@ -5,9 +5,11 @@ class Pessoa {
     String nome;
     String sobrenome;
     Integer idade;
-    protected String CPF;
+    String CPF;
     private List<ContaBancaria> contasBancarias;
-    
+    public Object cpf;
+    public Object cpfTitular;
+
     public Pessoa(String nome, String sobrenome, Integer idade, String CPF) {
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -36,19 +38,19 @@ class Pessoa {
         return contasBancarias;
     }
 
-    public void adicionarConta(ContaBancaria contaBancaria){
+    public void adicionarConta(ContaBancaria contaBancaria) {
         contasBancarias.add(contaBancaria);
     }
 
-    /* 
-    public void setContaBancaria(ArrayList<ContaBancaria> contaBancaria) {
-        this.contaBancaria = contaBancaria;
-    }
-    */
+    /*
+     * public void setContaBancaria(ArrayList<ContaBancaria> contaBancaria) {
+     * this.contaBancaria = contaBancaria;
+     * }
+     */
 
-    void Info(){
-        System.out.println("Nome Pessoa: " + nome + " " + sobrenome);
-        System.out.println("CPF Pessoa: " + CPF);
+    void Info() {
+        System.out.println("Nome: " + nome + " " + sobrenome);
+        System.out.println("CPF: " + CPF);
         System.out.println("Contas Bancária: " + contasBancarias.size());
     }
 
@@ -71,9 +73,5 @@ class Pessoa {
     public List<ContaBancaria> getContasBancarias() {
         return contasBancarias;
     }
-    /*
-    public void setContasBancarias(List<ContaBancaria> contasBancarias) {
-        this.contasBancarias = contasBancarias;
-    }
-     */
+
 }

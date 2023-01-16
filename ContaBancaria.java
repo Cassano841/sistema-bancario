@@ -23,14 +23,13 @@ public abstract class ContaBancaria{
     public void setTitularConta(Pessoa titularConta) {
         this.titularConta = titularConta;
     }
-    public Banco getBanco() {
+    public Banco getBanco(Banco banco) {
+        return this.banco= banco;
+    }
+    public Banco setBanco() {
         return banco;
     }
-    /*
-    public void setBanco(Banco banco) {
-        banco = banco;
-    }
-     */
+   
     public String getNomeConta() {
         return nomeConta;
     }
@@ -40,8 +39,8 @@ public abstract class ContaBancaria{
     public Integer getNroConta() {
         return nroConta;
     }
-    public void setNroConta(Integer nroConta) {
-        nroConta = nroConta;
+    public Integer setNroConta(Integer nroConta) {
+        return this.nroConta = nroConta;
     }
     public Double getSaldo() {
         return saldo;

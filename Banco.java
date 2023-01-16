@@ -3,13 +3,15 @@ import java.util.List;
 
 class Banco {
     String nome;
-    String CNPJ;
+    String cnpj;
     Integer NroBanco;
     List<ContaBancaria> contasBancarias;
+    public Object nroBanco;
+    public Object numero;
 
-    public Banco(String nome, String cNPJ, Integer nroBanco) {
+    public Banco(String nome, String cnpj, Integer nroBanco) {
         this.nome = nome;
-        this.CNPJ = cNPJ;
+        this.cnpj= cnpj;
         this.NroBanco = nroBanco;
         this.contasBancarias = new ArrayList<ContaBancaria>();
     }
@@ -19,15 +21,19 @@ class Banco {
     }
 
     void Info(){
+        System.out.println("");
         System.out.println("Nome Banco: "+ nome);
-        System.out.println("CNPJ Banco: " + CNPJ);
+        System.out.println("CNPJ Banco: " + cnpj);
         System.out.println("Nro Banco: " + NroBanco);
         System.out.println("Contas Bancárias: " + contasBancarias.size());
     }
 
-    void InfoContas(){
-        System.out.println("[In Progress] Acesso criar conta [In Progress]");
-    }
+    //void InfoContas(){
+      //  System.out.println("Nome Da Instituição: " + nome);
+       // System.out.println("CPF: " + CPF);
+       // System.out.println("Contas Bancária: " + contasBancarias.size());
+   // }");
+   //}
 
     public String getNome() {
         return nome;
@@ -37,12 +43,12 @@ class Banco {
         this.nome = nome;
     }
 
-    public String getCNPJ() {
-        return CNPJ;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCNPJ(String cNPJ) {
-        CNPJ = cNPJ;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     public Integer getNroBanco() {
@@ -60,5 +66,10 @@ class Banco {
     public void setContaBancaria(ArrayList<ContaBancaria> contaBancaria) {
         this.contasBancarias = contaBancaria;
     }
+
+    public static void add(Banco bancos) {
+    }
+
+    
   
   }
