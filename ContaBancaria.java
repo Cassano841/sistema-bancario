@@ -23,8 +23,8 @@ public abstract class ContaBancaria{
     public void setTitularConta(Pessoa titularConta) {
         this.titularConta = titularConta;
     }
-    public Banco getBanco(Banco banco) {
-        return this.banco= banco;
+    public Banco getBanco() {
+        return this.banco = banco;
     }
     public Banco setBanco() {
         return banco;

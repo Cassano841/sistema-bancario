@@ -32,4 +32,9 @@ public class ContaCorrente extends ContaBancaria {
     public void setTaxasMensais(double limite) {
         this.taxasMensais = limite;
     }
+
+    @Override
+    public String toString() {
+    return "Name: " + this.nomeConta + ", Age: " + this.taxasMensais;
+    }
 }
