@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     static ArrayList<Pessoa> cadastroPessoa = new ArrayList<Pessoa>();
@@ -12,46 +11,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Bem-vindo!");
 
-
-        /*
-         * CADASTRO AUTOMÁTICO DE PESSOAS
-         * Pessoa pessoa1 = new Pessoa("Nicholas", "Cassano", 27, "030.123.050-43");
-         * Pessoa pessoa2 = new Pessoa("Aline", "Dias", 24, "873.123.140-87");
-         * Pessoa pessoa3 = new Pessoa("Gueppetto", "Petto", 23, "020.345.123.-09");
-         * CADASTRO AUTOMÁTICO DE BANCOS
-         * Banco banco2 = new Banco("Banrisul", "911.323.0001/12", 2);
-         * Banco banco3 = new Banco("Bradesco", "123.323.0001/43", 3);
-         * CADASTRO AUTOMÁTICO DE CONTA CORRENTE
-         * ContaCorrente contaCorrente1 = new ContaCorrente(pessoa1, banco1, "CC 01",
-         * 275, 100.0, "nicholas123", 6.50);
-         * ContaCorrente contaCorrente2 = new ContaCorrente(pessoa2, banco2, "CC 02",
-         * 276, 450.0, "aline123", 5.50);
-         * ContaCorrente contaCorrente3 = new ContaCorrente(pessoa3, banco3, "CC 03",
-         * 277, 650.0, "petto123", 4.75);
-         * 
-         * CADASTRO AUTOMÁTICO DE CONTA POUPANÇA
-         * 
-         * ContaPoupanca contaPoupanca1 = new ContaPoupanca(pessoa1, banco1, "CP 01",
-         * 111, 100.0, "123nicholas", 3.0, 3);
-         * ContaPoupanca contaPoupanca2 = new ContaPoupanca(pessoa2, banco2, "CP 02",
-         * 112, 150.0, "123aline", 3.0, 3);
-         * ContaPoupanca contaPoupanca3 = new ContaPoupanca(pessoa3, banco3, "CP 03",
-         * 113, 450.0, "123petto", 3.0, 3);
-         * ADIÇÃO DE CONTAS À PESSOAS
-         * pessoa1.adicionarConta(contaCorrente1);
-         * pessoa2.adicionarConta(contaCorrente2);
-         * pessoa3.adicionarConta(contaCorrente3);
-         * pessoa1.adicionarConta(contaPoupanca1);
-         * pessoa2.adicionarConta(contaPoupanca2);
-         * pessoa3.adicionarConta(contaPoupanca3);
-         * ADIÇÃO DE CONTAS A BANCOS
-         * banco1.adicionarConta(contaCorrente1);
-         * banco1.adicionarConta(contaPoupanca1);
-         * banco2.adicionarConta(contaCorrente2);
-         * banco2.adicionarConta(contaPoupanca2);
-         * banco3.adicionarConta(contaCorrente3);
-         * banco3.adicionarConta(contaPoupanca3);
-         */
         int input = 100;
         while (input != 0) {
             menuPrincpal();
@@ -60,17 +19,29 @@ public class Main {
                 case 1:
                     System.out.println(":::::: Acessou Pessoas ::::::: ");
                     System.out.println("-----------------------");
-                    for (int i = 0; i < cadastroPessoa.size(); i++) {
+                    for (Pessoa pessoa : cadastroPessoa) {
                         System.out.println("-------------------------------");
-                        System.out.println("Nome     : " + cadastroPessoa.get(i).getNome());
-                        System.out.println("Sobrenome: " + cadastroPessoa.get(i).getSobrenome());
-                        System.out.println("Idade    : " + cadastroPessoa.get(i).getIdade());
-                        System.out.println("CPF      : " + cadastroPessoa.get(i).getCPF());
-                        System.out.println("Contas   : " + cadastroPessoa.get(i).getContaBancaria().size());
-                       /*
-                        for (int j = 0; j < cadastroPessoa.get(i).getContaBancaria().size(); j++){
-                            System.out.println("Contas   : " + cadastroPessoa.get(i).getContaBancaria().get(i).nomeConta);
+                        System.out.println("Nome     : " + pessoa.getNome());
+                        System.out.println("Sobrenome: " + pessoa.getSobrenome());
+                        System.out.println("Idade    : " + pessoa.getIdade());
+                        System.out.println("CPF      : " + pessoa.getCPF());
+                        if (!pessoa.getContaBancaria().isEmpty()) {
+                            for (ContaPoupanca contaPoupanca : cadastroContaPoupanca){
+                                System.out.println("----------------------------------------------");
+                                System.out.println("Nome Conta           : " + contaPoupanca.getNomeConta() );
+                                System.out.println("Numero Conta         : " + contaPoupanca.getNroConta());
+                                System.out.println("Nome Banco Associado : " + contaPoupanca.getBanco().getNome());
+                                System.out.println("CNPJ Banco Associado : " + contaPoupanca.getBanco().getCnpj());
+                                System.out.println("----------------------------------------------");
+                            }
+                        } else {
+                            System.out.println("Sem contas bancárias vinculadas ao usuário " + pessoa.getNome());
                         }
+                        /*
+                         * for (int j = 0; j < cadastroPessoa.get(i).getContaBancaria().size(); j++){
+                         * System.out.println("Contas   : " +
+                         * cadastroPessoa.get(i).getContaBancaria().get(i).nomeConta);
+                         * }
                          */
                         System.out.println("-------------------------------");
                     }
@@ -102,7 +73,8 @@ public class Main {
                         case 1:
                             for (int i = 0; i < cadastroContaCorrente.size(); i++) {
                                 System.out.println("-----------------------");
-                                System.out.println("Titular         : " + cadastroContaCorrente.get(i).getTitularConta().nome);
+                                System.out.println(
+                                        "Titular         : " + cadastroContaCorrente.get(i).getTitularConta().nome);
                                 System.out.println("Nro Conta       : " + cadastroContaCorrente.get(i).getNroConta());
                                 System.out.println("Saldo           : " + cadastroContaCorrente.get(i).saldo);
                                 System.out.println("Número Do Banco : " + cadastroContaCorrente.get(i).getBanco().nome);
@@ -140,15 +112,24 @@ public class Main {
                     input = sc.nextInt();
                     switch (input) {
                         case 1:
-                            for (int i = 0; i < cadastroContaPoupanca.size(); i++) {
-                                System.out.println("-----------------------");
-                                System.out
-                                        .println("Nome do Titular : " + cadastroContaPoupanca.get(i).getTitularConta());
-                                // System.out.println("Taxas Mensais : " +
-                                // cadastroContaPoupanca.get(i).NovoMes(););
-                                System.out.println("Saldo Conta     : " + cadastroContaPoupanca.get(i).getSaldo());
-                                System.out.println("Banco           : " + cadastroContaPoupanca.get(i).getBanco().nome);
-                                System.out.println("-----------------------");
+                            if (cadastroContaPoupanca.size() != 0) {
+                                for (int i = 0; i < cadastroContaPoupanca.size(); i++) {
+                                    System.out.println("-----------------------");
+                                    System.out.println("Nome do Titular      : "
+                                            + cadastroContaPoupanca.get(i).getTitularConta().nome);
+                                    System.out.println("Sobrenome do Titular : "
+                                            + cadastroContaPoupanca.get(i).getTitularConta().sobrenome);
+                                    System.out.println("CPF do Titular       : "
+                                            + cadastroContaPoupanca.get(i).getTitularConta().CPF);
+                                    // System.out.println("Taxas Mensais : " +
+                                    // cadastroContaPoupanca.get(i).NovoMes(););
+                                    System.out.println("Saldo Conta     : " + cadastroContaPoupanca.get(i).getSaldo());
+                                    System.out.println(
+                                            "Banco           : " + cadastroContaPoupanca.get(i).getBanco().nome);
+                                    System.out.println("-----------------------");
+                                }
+                            } else {
+                                System.out.println("Sem cadastros no momento");
                             }
                             break;
                         case 2:
@@ -272,25 +253,25 @@ public class Main {
                 System.out.print("Titular Conta: ");
                 cpfTitular = sc.next();
                 // = sc.nextLine();
-                //System.out.print("Senha: ");
-                //senha = sc.next();
-                //System.out.println("Número da Instuição: ");
-                //pulando = sc.nextLine();
-                //nroBanco = sc.nextInt();
+                // System.out.print("Senha: ");
+                // senha = sc.next();
+                // System.out.println("Número da Instuição: ");
+                // pulando = sc.nextLine();
+                // nroBanco = sc.nextInt();
 
                 if (cpfTitular == null || cpfTitular == " ") {
                     System.out.println("Sem informação preenchida");
-                } else if (cpfTitular.length() > 0){
-                    for (int i = 0; i < cadastroPessoa.size(); i++) {
-                        if (cpfTitular.equals(cadastroPessoa.get(i).CPF)){
-                            Pessoa adicionarPessoa = cadastroPessoa.get(i);
-                            System.out.println("Pessoa a ser adicionada como titular: " + adicionarPessoa); 
-
-                            ContaPoupanca contaPoupanca = new ContaPoupanca(adicionarPessoa, null, "CP 01", 111, 100.0, "123nicholas", 3.0, 3);
+                } else if (cpfTitular.length() > 0) {
+                    for (Pessoa pessoa : cadastroPessoa) {
+                        if (cpfTitular.equals(pessoa.CPF)) {
+                            ContaPoupanca contaPoupanca = new ContaPoupanca(pessoa, banco1, "123", 12, 100.0, "123",
+                                    100.0, 32);
                             cadastroContaPoupanca.add(contaPoupanca);
-                            System.out.println("Sucesso. CPF Informado  : " + cpfTitular); 
-                            System.out.println("Sucesso. Valor Informado: " + cadastroPessoa.get(i).CPF.toString());
-                            System.out.println("Objeto Pessoa           : " + cadastroPessoa.get(i));
+                            pessoa.adicionarConta(contaPoupanca);
+                            System.out.println("Sucesso. CPF Informado  : " + cpfTitular);
+                            System.out.println("Sucesso. Valor Informado: " + pessoa.CPF.toString());
+                            System.out.println("Objeto Pessoa           : " + pessoa);
+                            System.out.println("Objeto Conta Poupança:" + contaPoupanca);
                         } else {
                             System.out.println("Usuário não encontrado!");
                         }
