@@ -20,6 +20,10 @@ class Banco {
         contasBancarias.add(contaBancaria);
     }
 
+    public void fecharConta(ContaBancaria contaBancaria) {
+        System.out.println("[IN PROGRESS] Método de fechamento de conta [IN PROGRESS]");
+    }
+
     void Info(){
         System.out.println("");
         System.out.println("Nome Banco: "+ nome);
@@ -69,7 +73,4 @@ class Banco {
 
     public static void add(Banco bancos) {
     }
-
-    
-  
   }

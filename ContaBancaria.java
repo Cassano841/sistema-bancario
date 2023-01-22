@@ -3,16 +3,14 @@ public abstract class ContaBancaria{
 
     protected Pessoa titularConta;
     protected Banco banco;
-    
-    protected String nomeConta;
-    protected Integer nroConta;
-    protected Double saldo;
-    protected String senha;
 
-    public ContaBancaria(Pessoa titularConta, Banco banco, String nomeConta, Integer nroConta, Double saldo, String senha) {
+    protected Integer nroConta;
+    protected static Double saldo;
+    protected Integer senha;
+
+    public ContaBancaria(Pessoa titularConta, Banco banco, Integer nroConta, Double saldo, Integer senha) {
         this.titularConta = titularConta;
         this.banco = banco;
-        this.nomeConta = nomeConta;
         this.nroConta = nroConta;
         this.saldo = saldo;
         this.senha = senha;
@@ -29,13 +27,6 @@ public abstract class ContaBancaria{
     public Banco setBanco() {
         return banco;
     }
-   
-    public String getNomeConta() {
-        return nomeConta;
-    }
-    public void setNomeConta(String nomeConta) {
-        this.nomeConta = nomeConta;
-    }
     public Integer getNroConta() {
         return nroConta;
     }
@@ -48,24 +39,23 @@ public abstract class ContaBancaria{
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
-    public String getSenha() {
+    public Integer getSenha() {
         return senha;
     }
-    public void setSenha(String senha) {
+    public void setSenha(Integer senha) {
         this.senha = senha;
     }
 
-    public void depositar(double valor, String senha){
+    public void depositar(double valor, Integer senha){
         if (verificarSenha(senha)){
             saldo += valor;
             System.out.println("Depósito realizado com sucesso!");
         } else {
             System.out.println("Senha incorreta. Operação Cancelada.");
         }
-        saldo += valor;
     }
 
-    public boolean verificarSenha(String senha){
+    public boolean verificarSenha(Integer senha){
         if (this.senha.equals(senha)){
             return true;
         } else {
@@ -73,5 +63,5 @@ public abstract class ContaBancaria{
         }
     }
 
-    public abstract void sacar(double valor, String senha);
+    public abstract void sacar(double valor, Integer senha);
 }

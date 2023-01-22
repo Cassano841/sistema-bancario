@@ -42,10 +42,11 @@ class Pessoa {
         contasBancarias.add(contaBancaria);
     }
 
+    /*
     public void atualizarConta(ContaBancaria contaBancaria) {
         this.contasBancarias = contasBancarias;
     }
-
+    */
     /*
      * public void setContaBancaria(ArrayList<ContaBancaria> contaBancaria) {
      * this.contaBancaria = contaBancaria;
