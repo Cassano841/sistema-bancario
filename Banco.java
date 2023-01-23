@@ -11,33 +11,33 @@ class Banco {
 
     public Banco(String nome, String cnpj, Integer nroBanco) {
         this.nome = nome;
-        this.cnpj= cnpj;
+        this.cnpj = cnpj;
         this.NroBanco = nroBanco;
         this.contasBancarias = new ArrayList<ContaBancaria>();
     }
 
-    public void adicionarConta(ContaBancaria contaBancaria){
+    public void adicionarConta(ContaBancaria contaBancaria) {
         contasBancarias.add(contaBancaria);
     }
-
-    public void fecharConta(ContaBancaria contaBancaria) {
-        System.out.println("[IN PROGRESS] Método de fechamento de conta [IN PROGRESS]");
+    
+    public void removerConta(ContaBancaria contaBancaria) {
+        contasBancarias.remove(contaBancaria);
     }
-
-    void Info(){
+    
+    void Info() {
         System.out.println("");
-        System.out.println("Nome Banco: "+ nome);
+        System.out.println("Nome Banco: " + nome);
         System.out.println("CNPJ Banco: " + cnpj);
         System.out.println("Nro Banco: " + NroBanco);
         System.out.println("Contas Bancárias: " + contasBancarias.size());
     }
 
-    //void InfoContas(){
-      //  System.out.println("Nome Da Instituição: " + nome);
-       // System.out.println("CPF: " + CPF);
-       // System.out.println("Contas Bancária: " + contasBancarias.size());
-   // }");
-   //}
+    // void InfoContas(){
+    // System.out.println("Nome Da Instituição: " + nome);
+    // System.out.println("CPF: " + CPF);
+    // System.out.println("Contas Bancária: " + contasBancarias.size());
+    // }");
+    // }
 
     public String getNome() {
         return nome;
@@ -73,4 +73,4 @@ class Banco {
 
     public static void add(Banco bancos) {
     }
-  }
+}

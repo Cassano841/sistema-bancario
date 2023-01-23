@@ -35,23 +35,16 @@ class Pessoa {
     }
 
     public List<ContaBancaria> getContaBancaria() {
-        return contasBancarias; 
+        return contasBancarias;
     }
 
     public void adicionarConta(ContaBancaria contaBancaria) {
         contasBancarias.add(contaBancaria);
     }
 
-    /*
-    public void atualizarConta(ContaBancaria contaBancaria) {
-        this.contasBancarias = contasBancarias;
+    public void removerConta(ContaBancaria contaBancaria) {
+        contasBancarias.remove(contaBancaria);
     }
-    */
-    /*
-     * public void setContaBancaria(ArrayList<ContaBancaria> contaBancaria) {
-     * this.contaBancaria = contaBancaria;
-     * }
-     */
 
     void Info() {
         System.out.println("Nome: " + nome + " " + sobrenome);

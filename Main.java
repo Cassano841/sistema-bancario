@@ -22,10 +22,10 @@ public class Main {
                     if (cadastroPessoa.size() != 0) {
                         for (Pessoa pessoa : cadastroPessoa) {
                             System.out.println(" ");
-                            System.out.println("Nome     : " + pessoa.getNome());
+                            System.out.println("Nome: " + pessoa.getNome());
                             System.out.println("Sobrenome: " + pessoa.getSobrenome());
-                            System.out.println("Idade    : " + pessoa.getIdade());
-                            System.out.println("CPF      : " + pessoa.getCPF());
+                            System.out.println("Idade: " + pessoa.getIdade());
+                            System.out.println("CPF: " + pessoa.getCPF());
                             System.out.println(" ");
                         }
                     } else {
@@ -38,8 +38,8 @@ public class Main {
                         for (int i = 0; i < cadastroBanco.size(); i++) {
                             System.out.println(" ");
                             System.out.println("Nome da Instituição: " + cadastroBanco.get(i).getNome());
-                            System.out.println("CNPJ               : " + cadastroBanco.get(i).getCnpj());
-                            System.out.println("Número Do Banco    : " + cadastroBanco.get(i).getNroBanco());
+                            System.out.println("CNPJ: " + cadastroBanco.get(i).getCnpj());
+                            System.out.println("Número Do Banco: " + cadastroBanco.get(i).getNroBanco());
                             System.out.println(" ");
                         }
                     } else {
@@ -53,7 +53,8 @@ public class Main {
                     System.out.println("1) Informações da Conta");
                     System.out.println("2) Simulação Taxa Mensal");
                     System.out.println("3) Depositar valor");
-                    System.out.println("4) Voltar ao menu princpal");
+                    System.out.println("4) Fechar Conta Corrente");
+                    System.out.println("5) Voltar ao menu princpal");
                     input = sc.nextInt();
                     switch (input) {
                         case 1:
@@ -98,7 +99,38 @@ public class Main {
                                     }
                                 }
                             }
+                            break;
+                        case 4:
+                            System.out.println("::::: FECHAMENTO :::::");
+                            /*/
+                            System.out.println("Qual o CPF do Titular da Conta:");
+                            cpfTitular = sc.next();
+                            System.out.println("Número da Conta: ");
+                            int nroConta = sc.nextInt();
 
+                            if (cpfTitular == null || cpfTitular == " ") {
+                                System.out.println("CPF não encontrado!");
+                            } else if (cpfTitular.length() > 0) {
+                                if (nroConta != 0) {
+                                    for (Banco banco : cadastroBanco) {
+                                        if (nroConta == banco.NroBanco) {
+                                            cadastroBanco.remove(banco);
+
+                                        }
+                                    }
+                                }
+                                for (Pessoa pessoa : cadastroPessoa) {
+                                    if (cpfTitular.equals(pessoa.CPF)) {
+                                        for (ContaCorrente cCorrente : cadastroContaCorrente) {
+                                            if (nroConta == cCorrente.nroConta) {
+
+                                                System.out.println("Conta fechada com sucesso!");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            */
                             break;
                         default:
                             System.out.println("Opção não encontrada");
@@ -117,34 +149,39 @@ public class Main {
                             if (cadastroContaPoupanca.size() != 0) {
                                 for (int i = 0; i < cadastroContaPoupanca.size(); i++) {
                                     System.out.println(" ");
-                                    System.out.println("Nome do Titular: "
+                                    System.out.println("Nome do Cliente: "
                                             + cadastroContaPoupanca.get(i).getTitularConta().nome);
                                     System.out.println("Sobrenome do Titular: "
                                             + cadastroContaPoupanca.get(i).getTitularConta().sobrenome);
                                     System.out.println("CPF do Titular: "
                                             + cadastroContaPoupanca.get(i).getTitularConta().CPF);
+                                    System.out.println(
+                                            "Rendimento Mensal:" + cadastroContaPoupanca.get(i).getRendimento());
                                     System.out.println("Saldo Conta: " + cadastroContaPoupanca.get(i).getSaldo());
                                     System.out.println("Banco: " + cadastroContaPoupanca.get(i).getBanco().nome);
-                                    System.out.println("-----------------------");
+                                    System.out.println("Nro Conta: " + cadastroContaPoupanca.get(i).nroConta);
+                                    System.out.println(
+                                            "Saques Restantes: " + cadastroContaPoupanca.get(i).getSaquesMensais());
+                                    System.out.println(" ");
                                 }
                             } else {
                                 System.out.println("Sem cadastros no momento");
                             }
                             break;
                         case 2:
-                        System.out.println("Qual CPF do usuário?");
-                        String cpfTitular = sc.next();
-                        System.out.println("Informe sua senha:");
-                        Integer senha = sc.nextInt();
-                        for (Pessoa pessoa : cadastroPessoa) {
-                            if (cpfTitular.equals(pessoa.CPF)) {
-                                for (ContaPoupanca cPoupanca : cadastroContaPoupanca) {
-                                    cPoupanca.NovoMes();
-                                    System.out.println(" ");
-                                    cPoupanca.Info();
+                            System.out.println("Qual CPF do usuário?");
+                            String cpfTitular = sc.next();
+                            System.out.println("Informe sua senha:");
+                            Integer senha = sc.nextInt();
+                            for (Pessoa pessoa : cadastroPessoa) {
+                                if (cpfTitular.equals(pessoa.CPF)) {
+                                    for (ContaPoupanca cPoupanca : cadastroContaPoupanca) {
+                                        cPoupanca.NovoMes();
+                                        System.out.println(" ");
+                                        cPoupanca.Info();
+                                    }
                                 }
                             }
-                        }
                             break;
                         case 3:
                             System.out.println("Qual CPF do usuário?");
@@ -160,7 +197,6 @@ public class Main {
                                     for (ContaPoupanca cPoupanca : cadastroContaPoupanca) {
                                         if (contaTitular.equals(cPoupanca.nroConta)) {
                                             cPoupanca.sacar(valorSaque, senha);
-                                            System.out.println("Saque efetuado com sucesso!");
                                             System.out.println(" ");
                                         }
                                     }
@@ -190,16 +226,16 @@ public class Main {
     }
 
     static void menuPrincpal() {
-        System.out.println("========================================");
-        System.out.println("|| Escolha uma opção:                 ||");
-        System.out.println("|| 1) Consulta de Pessoas Cadastradas ||");
-        System.out.println("|| 2) Consulta de Bancos Cadastrados  ||");
-        System.out.println("|| 3) Contas Corrente                 ||");
-        System.out.println("|| 4) Contas Poupança                 ||");
-        System.out.println("|| 5) Cadastro de Pessoas             ||");
-        System.out.println("|| 6) Cadastro de Bancos              ||");
-        System.out.println("|| 7) Cadastro de Contas              ||");
-        System.out.println("========================================");
+        System.out.println("---------------------------------------");
+        System.out.println("|| Escolha uma opção: ");
+        System.out.println("|| 1) Consulta de Pessoas Cadastradas");
+        System.out.println("|| 2) Consulta de Bancos Cadastrados");
+        System.out.println("|| 3) Contas Corrente");
+        System.out.println("|| 4) Contas Poupança");
+        System.out.println("|| 5) Cadastro de Pessoas");
+        System.out.println("|| 6) Cadastro de Bancos");
+        System.out.println("|| 7) Cadastro de Contas");
+        System.out.println("----------------------------------------");
     }
 
     public static void menuCadastroPessoa() {
@@ -247,12 +283,12 @@ public class Main {
         int nroBanco;
         Integer senha;
 
-        System.out.println("==================================");
-        System.out.println("|| Tipo de Conta para Abertura: ||");
-        System.out.println("|| 1) Poupança                  ||");
-        System.out.println("|| 2) Corrente                  ||");
-        System.out.println("|| 3) Voltar ao Menu Principal  ||");
-        System.out.println("==================================");
+        System.out.println("----------------------------------");
+        System.out.println(" Tipo de Conta para Abertura: ");
+        System.out.println(" 1) Poupança                  ");
+        System.out.println(" 2) Corrente                  ");
+        System.out.println(" 3) Voltar ao Menu Principal  ");
+        System.out.println("----------------------------------");
         input = sc.nextInt();
 
         switch (input) {
@@ -294,6 +330,7 @@ public class Main {
                 senha = sc.nextInt();
                 System.out.println("Qual banco deseja cadastrar sua Conta Corrente?");
                 nroBanco = sc.nextInt();
+
                 if (cpfTitular == null || cpfTitular == " ") {
                     System.out.println("O CPF precisa ser informado para cadastro de Conta Corrente.");
                 } else if (cpfTitular.length() > 0) {
@@ -306,7 +343,7 @@ public class Main {
                                         cadastroContaCorrente.add(contaCorrente);
                                         pessoa.adicionarConta(contaCorrente);
                                         banco.adicionarConta(contaCorrente);
-                                    } 
+                                    }
                                 }
                             }
                             System.out.println("Cadastro de Conta Corrente realizado com sucesso!");

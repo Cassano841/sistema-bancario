@@ -10,6 +10,22 @@ public class ContaPoupanca extends ContaBancaria {
         this.saquesMensais = 3;
     }
 
+    public Integer getSaquesMensais() {
+        return saquesMensais;
+    }
+
+    public void setSaquesMensais(Integer saquesMensais) {
+        this.saquesMensais = saquesMensais;
+    }
+
+    public Double getRendimento() {
+        return rendimento;
+    }
+
+    public void setRendimento(Double rendimento) {
+        this.rendimento = rendimento;
+    }
+
     void Info() {
         System.out.println("Nome do Banco : " + banco.nome);
         System.out.println("Nr. Conta     : " + nroConta);
@@ -22,14 +38,18 @@ public class ContaPoupanca extends ContaBancaria {
 
     public void sacar(double valor, Integer senha) {
         if (verificarSenha(senha)) {
-            if (valor <= saldo) {
-                saldo -= valor;
-                saquesMensais--;
-                System.out.println("Saque realizado com sucesso");
-                System.out.println("Saldo atual:" + saldo);
-                System.out.println("Quantidade de Saques restantes:" + saquesMensais);
+            if (saquesMensais != 0) {
+                if (valor <= saldo) {
+                    saldo -= valor;
+                    saquesMensais--;
+                    System.out.println("Saque realizado com sucesso");
+                    System.out.println("Saldo atual:" + saldo);
+                    System.out.println("Quantidade de Saques restantes:" + saquesMensais);
+                } else {
+                    System.out.println("Saldo insuficiente.");
+                }
             } else {
-                System.out.println("Saldo insuficiente.");
+                System.out.println("Número de saques disponíveis no mês atingido.");
             }
         } else {
             System.out.println("Senha incorreta!");
@@ -38,10 +58,10 @@ public class ContaPoupanca extends ContaBancaria {
 
     public void NovoMes() {
         double rendimentoTotalMes;
-        rendimentoTotalMes = ((saldo * rendimento));
+        rendimentoTotalMes = ((saldo * rendimento) / 100);
         saldo += rendimentoTotalMes;
+        saquesMensais = 3;
         System.out.println("Rendimento total do mês: R$" + rendimentoTotalMes);
         System.out.println("Saldo final: R$ " + saldo);
     }
-
 }

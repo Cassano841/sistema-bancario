@@ -1,5 +1,5 @@
 
-public abstract class ContaBancaria{
+public abstract class ContaBancaria {
 
     protected Pessoa titularConta;
     protected Banco banco;
@@ -15,39 +15,49 @@ public abstract class ContaBancaria{
         this.saldo = saldo;
         this.senha = senha;
     }
+
     public Pessoa getTitularConta() {
         return titularConta;
     }
+
     public void setTitularConta(Pessoa titularConta) {
         this.titularConta = titularConta;
     }
+
     public Banco getBanco() {
         return this.banco = banco;
     }
+
     public Banco setBanco() {
         return banco;
     }
+
     public Integer getNroConta() {
         return nroConta;
     }
+
     public Integer setNroConta(Integer nroConta) {
         return this.nroConta = nroConta;
     }
+
     public Double getSaldo() {
         return saldo;
     }
+
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
+
     public Integer getSenha() {
         return senha;
     }
+
     public void setSenha(Integer senha) {
         this.senha = senha;
     }
 
-    public void depositar(double valor, Integer senha){
-        if (verificarSenha(senha)){
+    public void depositar(double valor, Integer senha) {
+        if (verificarSenha(senha)) {
             saldo += valor;
             System.out.println("Depósito realizado com sucesso!");
         } else {
@@ -55,8 +65,8 @@ public abstract class ContaBancaria{
         }
     }
 
-    public boolean verificarSenha(Integer senha){
-        if (this.senha.equals(senha)){
+    public boolean verificarSenha(Integer senha) {
+        if (this.senha.equals(senha)) {
             return true;
         } else {
             return false;
